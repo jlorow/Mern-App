@@ -1,0 +1,24 @@
+{
+  "name": "mearn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon backend/server.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodeman": "^1.1.2",
+    "nodemon": "^3.1.9"
+  }
+}
