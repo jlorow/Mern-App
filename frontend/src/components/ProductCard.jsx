@@ -38,11 +38,26 @@ const ProductCard = ({product}) => {
 };
 
 const handleUpdateProduct  =  async (pid, updatedProduct) => {
-  await updateProduct(pid, updatedProduct);
+  const {success, message}  = await updateProduct(pid, updatedProduct);
   onClose();
+  if(!success) {
+    toast({
+      title: "Error",
+      description: message,
+      status: "error",
+      duration: 3000,
+      isClosable:true,
+    });
+  } else {
+    toast({
+      title:"Success",
+      description: "Product updated successfully",
+      status: "success",
+      isClosable:true,
+    });
 };
 
-
+};
   return (
     <Box
     shadow='lg'
@@ -52,7 +67,17 @@ const handleUpdateProduct  =  async (pid, updatedProduct) => {
     _hover={{transform: "translateY(-5px)", shadow: "xl" }}
     bg={bg}
     >
-    <Image src={product.image} alt={product.name} h={48} w='full' objectFit='cover'/>
+    <Image
+    src={product?.image || 'URL_TO_YOUR_DEFAULT_IMAGE'}
+    alt={product?.name || 'Product Image'}
+    h={48}
+    w='full'
+    objectFit='cover'
+    onError={(e) => {
+      e.target.onerror = null; // Prevent infinite loop
+      e.target.src = "URL_TO_YOUR_ERROR_IMAGE"; // Set a fallback error image
+    }}
+  />
     
     <Box p={4}>
      <Heading as='h3' siz='md' mb={2}>
